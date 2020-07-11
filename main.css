@@ -1,0 +1,65 @@
+* {
+
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: 'Do Hyeon', sans-serif;
+    margin: 0;
+    background-color: #14213D;
+
+}
+
+main {
+
+    padding-top: 20px;
+    text-align: left;
+
+}
+
+header {
+
+    background-color: #e5e5e5;
+    padding: 20px 0 20px 0;
+
+}
+
+header h1 {
+
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+
+}
+
+header nav a {
+
+    text-decoration: none;
+    padding-left: 5px;
+    font-size: small;
+    margin: 0 auto;
+
+}
+
+fieldset {
+
+    width: 70%;
+    padding: 10px;
+    margin: 0 auto;
+    background-color: #e5e5e5;
+
+}
+
+.stats {
+
+    padding-top: 5px;
+    text-align: center;
+
+}
+
+button {
+
+
+}
