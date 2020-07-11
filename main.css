@@ -34,21 +34,52 @@ header h1 {
 
 }
 
+header nav {
+
+    display: flex;
+    justify-content: center;
+
+}
+
 header nav a {
 
     text-decoration: none;
     padding-left: 5px;
     font-size: small;
     margin: 0 auto;
+    color: #335c81;
+    padding-top: 1em;
+
 
 }
 
+header nav a:hover {
+
+    color: #14213D;
+
+}
+
+
+
 fieldset {
 
-    width: 70%;
+    width: 90%;
     padding: 10px;
     margin: 0 auto;
     background-color: #e5e5e5;
+
+}
+
+button {
+
+    margin-top: 1em;
+    
+
+}
+
+.choice {
+
+    padding-left: 1em;
 
 }
 
@@ -59,7 +90,10 @@ fieldset {
 
 }
 
-button {
+.textc {
 
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
 
 }
