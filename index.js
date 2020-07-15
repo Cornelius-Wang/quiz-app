@@ -9,7 +9,7 @@ function currentStats() {
     let currentQuestion = STORE.currentQuestion;
     let numCorrect = STORE.score;
 
-    $('.stats').append(
+    $('.stats').html(
         `<p> Question #: ${currentQuestion}  |   Score: ${numCorrect} </p>`
     );
 }
@@ -28,7 +28,7 @@ function showAnswers() {
 
 /* Adding the question + answers to the DOM */
 function showQuestion() {
-    let question = STORE.questions(STORE.currentQuestion);
+    let questionObject = STORE.questions(STORE.currentQuestion);
 
     currentStats();
     /* Add the current question html to the DOM */
@@ -36,7 +36,7 @@ function showQuestion() {
         `<fieldset>
            <div class='textc'>
                <h2>Question ${STORE.currentQuestion}</h2>
-               <p>${question.question}</p>
+               <p>${questionObject.question}</p>
            </div>
            <div class="choice">
                <form id='js-questions' class='questions'>
@@ -60,7 +60,9 @@ function nextQuestion() {
 function questionSubmit() {
     /*
     On submitting an answer to a question
-    Check if the answer is right
+    */
+    $('#submit-question').on('click', '')
+    /*Check if the answer is right
     Render correct answer content if right, wrong answer content if not
     */
 }
@@ -83,9 +85,11 @@ function finalScreen() {
 }
 
 
-$(function startTheShow() {
+function startTheShow() {
    startQuiz();
    currentStats();
    showAnswers();
    showQuestion();
-});
+}
+
+$(startTheShow);
