@@ -53,7 +53,7 @@ function showAnswers() {
     /* Iterate through the answers to a question */
     for (let i = 0; i < STORE[currentQuestion].answers.length; i++) {
         $('.js-answers').append(
-            `<input type='radio' name='choice' id='option${i+1}' value="${STORE[currentQuestion].answers[i]}" tabindex = ${i+1}>
+            `<input type='radio' name='choice' id='option${i+1}' value="${STORE[currentQuestion].answers[i]}" aria-checked='false' tabindex='${i+1}'>
             <label for="option${i+1}">${STORE[currentQuestion].answers[i]}</label>
             <br>`
         );
@@ -72,10 +72,7 @@ function showQuestion() {
         $('main').html(
             `<form id='js-questions' class='questions'>
                 <fieldset>
-                    <div class='textc'>
-                        <h2>Question ${currentQuestion+1}</h2>
-                        <p>${STORE[currentQuestion].question}</p>
-                    </div>
+                        <legend>${STORE[currentQuestion].question}</legend>
                     <div class="js-answers">
                     </div>
                 <button type='submit' id="submit-question">Submit Answer</button>
@@ -183,10 +180,12 @@ function finalScreen() {
         `
         <fieldset>
            <div class='textc'>
-               <h2>You got ${score}/${STORE.length} right!</h2>
-               <p>Elon would be proud of you!</p>
-               <img src="images/dancing_elon.gif" alt="entrepreneur celebration" style="width:240px; height:175px">
-           </div>
+                <h2>You got ${score}/${STORE.length} right!</h2>
+                <p>Elon would be proud of you!</p>
+                <div class='gif'>
+                <img src="images/dancing_elon.gif" alt="entrepreneur celebration" style="width:240px; height:175px; aspect-ratio: 250:175;">
+                </div>
+            </div>
            <button type='button' id="restart">Restart</button>
         </fieldset>
         `
