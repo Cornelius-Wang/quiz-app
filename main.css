@@ -19,6 +19,15 @@ main {
 
 }
 
+main h2 {
+
+    font-size: 20px;
+    padding-bottom: 15px;
+
+}
+
+/* Header styling */
+
 header {
 
     background-color: #e5e5e5;
@@ -73,7 +82,14 @@ fieldset {
 button {
 
     margin-top: 1em;
-    
+    text-align: center;
+
+}
+
+img {
+
+    width: 30%;
+    padding: 15px 0 15px 0;
 
 }
 
@@ -96,4 +112,26 @@ button {
     flex-direction: column;
     padding: 1em;
 
+}
+.gif {
+
+    width: 10%;
+    height: 10%;
+
+}
+
+.js-answers {
+
+    text-align: left;
+    padding-left: 10px;
+
+}
+
+@media screen and (min-width: 320px) {
+
+    img {
+        
+        width: 50;
+
+    }
 }
