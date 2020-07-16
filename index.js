@@ -5,7 +5,7 @@ let score = 0;
 function startQuiz() {
     $('#begin').on('click', function(event) {
         /* Shuffle the STORE array */
-        randomize();
+        // randomize();
         /* Render the next question in the STORE array */
         showQuestion();
         /* Render the score and question number counters */
