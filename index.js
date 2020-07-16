@@ -4,21 +4,12 @@ let score = 0;
 
 function startQuiz() {
     $('#begin').on('click', function(event) {
-        /* Shuffle the STORE array */
-        // randomize();
         /* Render the next question in the STORE array */
         showQuestion();
         /* Render the score and question number counters */
         $('.stats').show();
     });
 }
-
-// function randomize() {
-
-//     shuffle(STORE);
-//     console.log(STORE);
-
-// }
 
 /* Render the start screen */
 function renderFirst() {
@@ -206,7 +197,6 @@ function finalScreen() {
 
 
 function startTheShow() {
-    // randomize();
     showAnswers();
     resetStats();
     finalScreen();
