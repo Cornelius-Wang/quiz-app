@@ -88,7 +88,7 @@ const STORE = [
             'When you decide on important product decisions through a paper plane flying competition'
         ],
         correctAnswer: 'A wire-framing technique to simulate the user experience through an application for random people on a piece of paper',
-        funFact:"<a href='http://www.jamieshiller.com/paper-prototyping-an-ipad-app-business-model-generation/'>Paper prototypes</a> are used when trying to determine how a minimum viable product (MVP) or new feature will look from the user's perspective. The key is having a test s who isn't involved with the project at all so they don't know what it's supposed to look like."
+        funFact:"<a href='http://www.jamieshiller.com/paper-prototyping-an-ipad-app-business-model-generation/' target='_blank'>Paper prototypes</a> are used when trying to determine how a minimum viable product (MVP) or new feature will look from the user's perspective. The key is having a test s who isn't involved with the project at all so they don't know what it's supposed to look like."
     },
     /* 8 */
     {
