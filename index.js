@@ -5,13 +5,11 @@ let score = 0;
 function startQuiz() {
     $('#begin').on('click', function(event) {
         /* Render the next question in the STORE array */
-        showQuestion();
-        /* Render the score and question number counters */
-        $('.stats').show();
+        renderQuestion();        
     });
 }
 
-function renderFirst() {
+function firstScreenTemplate() {
 
     return `<fieldset>
                 <div class='textc'>
@@ -26,15 +24,15 @@ function renderFirst() {
 }
 
 /* Render the start screen */
-function firstScreen() {
+function renderFirstScreen() {
 
     $('.stats').hide();
 
-    $('main').html(renderFirst());
+    $('main').html(firstScreenTemplate());
     startQuiz();
 }
 
-function renderStats(numQuestion, score) {
+function statsTemplate(numQuestion, score) {
 
     return `<div class='stats'>
                 <ul>
@@ -52,13 +50,13 @@ function renderStats(numQuestion, score) {
 }
 
 /* Update Question # and # of questions answered correctly */
-function currentStats() {
+function renderStats() {
     $('.stats').html(
-        renderStats(currentQuestion, score)
+        statsTemplate(currentQuestion, score)
     );
 }
 
-function renderAnswers(id, value) {
+function answersTemplate(id, value) {
 
     return `<input type='radio' name='choice' id='option${id+1}' value="${value}" aria-checked='false' required>
             <label for="option${id+1}">${value}</label>
@@ -67,15 +65,15 @@ function renderAnswers(id, value) {
 }
 
 /* Need a way to show the answers to a question */
-function showAnswers() {
+function renderAnswers() {
     /* Iterate through the answers to a question */
     for (let i = 0; i < STORE[currentQuestion].answers.length; i++) {
-        let answerString = renderAnswers(i,STORE[currentQuestion].answers[i]);
+        let answerString = answersTemplate(i,STORE[currentQuestion].answers[i]);
         $('.js-answers').append(answerString);
     };
 }
 
-function renderQuestion(question) {
+function questionTemplate(question) {
 
     return `<form id='js-questions' class='questions'>
                 <fieldset>
@@ -89,17 +87,19 @@ function renderQuestion(question) {
 
 }
 /* Adding the question + answers to the DOM */
-function showQuestion() {
+function renderQuestion() {
     if ((currentQuestion) === STORE.length) {
         
-        finalScreen();
+        renderFinalScreen();
 
     } else {
 
         /* Add the current question html to the DOM */
-        $('main').html(renderQuestion(STORE[currentQuestion].question));
+        $('.stats').show();
+        $('main').html(questionTemplate(STORE[currentQuestion].question));
+        renderStats();
     /* Add the answers to the question to the DOM */
-    showAnswers();
+    renderAnswers();
     }
 }
 
@@ -109,7 +109,7 @@ function resetStats() {
     score = 0;
     $('.score').text(0);
     $('.questionNumber').text(0);
-    currentStats();
+    renderStats();
 
 }
 
@@ -118,12 +118,12 @@ function nextQuestion() {
     $('#continue').on('click', function(event){
         currentQuestion++;
         /* Render the question and answers */
-        showQuestion();
-        currentStats();
+        renderQuestion();
+        renderStats();
     });    
 }
 
-function renderCorrect(funFact) {
+function correctTemplate(funFact) {
 
     return `<div class='container'>
             <fieldset>
@@ -139,7 +139,7 @@ function renderCorrect(funFact) {
 
 }
 
-function renderWrong(rightAnswer, funFact) {
+function wrongTemplate(rightAnswer, funFact) {
 
     return `<div class='container'>
             <fieldset>
@@ -156,6 +156,15 @@ function renderWrong(rightAnswer, funFact) {
 
 }
 
+function renderCorrect(funFact) {
+    score = score+1;
+    $('main').html(correctTemplate(funFact));
+}
+
+function renderWrong(rightAnswer, funFact) {
+    $('main').html(wrongTemplate(rightAnswer, funFact))
+}
+
 function questionSubmit() {
     /*On submitting an answer to a question*/
     $('#container').on('submit', '#js-questions', function(event){
@@ -166,14 +175,12 @@ function questionSubmit() {
         let correct = STORE[currentQuestion].correctAnswer;
         /*Render correct answer content if right, wrong answer content if not*/
         if (answer === correct) {
-            score = score+1;
-            
-            $('main').html(renderCorrect(STORE[currentQuestion].funFact));
+            renderCorrect(STORE[currentQuestion].funFact)
         } else {
-            $('main').html(renderWrong(STORE[currentQuestion].correctAnswer, STORE[currentQuestion].funFact));
+            renderWrong(STORE[currentQuestion].correctAnswer, STORE[currentQuestion].funFact);
         }
         /* Update Score */
-        currentStats();
+        renderStats();
         /* Setting event listener */
         nextQuestion();
     });
@@ -181,14 +188,12 @@ function questionSubmit() {
 
 function restartQuiz() {
     $('#container').on('click', '#restart', function(event){
-        $('main').html(renderFirst());
         resetStats();
-        /* Setting event listener */
-        startQuiz();
+        renderFirstScreen();
     });
 }
 
-function renderFinalScreen(score) {
+function finalScreenTemplate(score) {
     return  `<fieldset>
                 <div class='textc'>
                     <h2>You got ${score}/${STORE.length} right!</h2>
@@ -203,10 +208,10 @@ function renderFinalScreen(score) {
             
 }
 
-function finalScreen() {
+function renderFinalScreen() {
     /* Show the final score and a good/average/bad descriptor */
     $('.stats').hide();
-    $('main').html(renderFinalScreen(score));
+    $('main').html(finalScreenTemplate(score));
     /* Setting event listener */
     restartQuiz();
 }
@@ -217,14 +222,14 @@ function eventSet() {
     questionSubmit();
     nextQuestion();
     restartQuiz();
-    renderFirst();
+    firstScreenTemplate();
 
 }
 
 function startTheShow() {
 
     eventSet();
-    firstScreen();
+    renderFirstScreen();
 
 }
 
