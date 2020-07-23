@@ -222,7 +222,6 @@ function eventSet() {
     questionSubmit();
     nextQuestion();
     restartQuiz();
-    firstScreenTemplate();
 
 }
 
